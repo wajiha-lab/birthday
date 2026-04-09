@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Birthday Wishes for Rimsha 💌</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet'>
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #ffecd2);
+            min-height: 100vh;
+            font-family: 'Signika', sans-serif;
+        }
+        .page-title {
+            text-align: center;
+            padding: 40px 0 20px;
+            color: #c0392b;
+            font-size: 42px;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+        }
+        .wish-card {
+            background: rgba(255,255,255,0.85);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 8px 25px rgba(255,100,130,0.3);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .wish-card:hover { transform: scale(1.03); }
+        .wish-card .emoji { font-size: 50px; display: block; margin-bottom: 15px; }
+        .wish-card h3 { color: #e74c3c; font-size: 22px; margin-bottom: 10px; }
+        .wish-card p { color: #555; font-size: 16px; line-height: 1.6; }
+        .back-btn {
+            display: block;
+            width: 200px;
+            margin: 30px auto;
+            padding: 12px;
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 18px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(231,76,60,0.4);
+        }
+        .back-btn:hover { background: #c0392b; color: #fff; text-decoration: none; }
+        .confetti { position: fixed; top: 0; left: 0; width: 100%; pointer-events: none; z-index: 9999; }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">🎀 Wishes for Rimsha 🎀</h1>
+
+    <div class="container">
+        <div class="wish-card">
+            <span class="emoji">🌸</span>
+            <h3>May You Always Shine</h3>
+            <p>Rimsha, may your life be as beautiful as your smile. Wishing you endless happiness today and always!</p>
+        </div>
+        <div class="wish-card">
+            <span class="emoji">🌟</span>
+            <h3>Stars Are Yours</h3>
+            <p>May every dream you have come true this year. You deserve all the stars in the sky, dear Rimsha!</p>
+        </div>
+        <div class="wish-card">
+            <span class="emoji">🎂</span>
+            <h3>Sweet Birthday</h3>
+            <p>May this birthday be as sweet as cake and as joyful as laughter. Happy Birthday, Rimsha!</p>
+        </div>
+        <div class="wish-card">
+            <span class="emoji">💖</span>
+            <h3>Allah Bless You</h3>
+            <p>May Allah shower His blessings upon you, keep you safe, and fill your life with love and success. Ameen!</p>
+        </div>
+        <div class="wish-card">
+            <span class="emoji">🦋</span>
+            <h3>New Beginnings</h3>
+            <p>A new year of your life begins today. May it bring you new adventures, new joys, and beautiful memories!</p>
+        </div>
+
+        <a href="index.html" class="back-btn">🏠 Back to Home</a>
+        <a href="photos.html" class="back-btn" style="background:#9b59b6; box-shadow:0 4px 15px rgba(155,89,182,0.4);">📸 See Photos</a>
+        <a href="cake.html" class="back-btn" style="background:#e67e22; box-shadow:0 4px 15px rgba(230,126,34,0.4);">🎂 Cut the Cake</a>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        // Simple confetti effect
+        function createConfetti() {
+            var colors = ['#ff6b9d','#ffd93d','#6bcb77','#4d96ff','#ff6348'];
+            for(var i=0; i<5; i++) {
+                var dot = $('<div>').css({
+                    position:'fixed', width:'10px', height:'10px',
+                    borderRadius:'50%', background: colors[Math.floor(Math.random()*colors.length)],
+                    left: Math.random()*100+'vw', top:'-10px', zIndex:9999,
+                    opacity: 0.8
+                });
+                $('body').append(dot);
+                dot.animate({top:'110vh', left: (parseFloat(dot.css('left'))+Math.random()*200-100)+'px'}, 3000+Math.random()*2000, function(){$(this).remove();});
+            }
+        }
+        setInterval(createConfetti, 300);
+    </script>
+</body>
+</html>

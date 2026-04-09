@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cut the Cake 🎂 - Rimsha</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet'>
+    <link rel="stylesheet/less" href="cake.less">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min.js"></script>
+    <style>
+        body {
+            background: #1a0a2e;
+            min-height: 100vh;
+            font-family: 'Signika', sans-serif;
+            overflow-x: hidden;
+        }
+        .page-title {
+            text-align: center;
+            padding: 30px 0 10px;
+            color: #ffd700;
+            font-size: 38px;
+            text-shadow: 0 0 20px rgba(255,215,0,0.8);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ffd700; }
+            to { text-shadow: 0 0 30px #ffd700, 0 0 60px #ff6b9d; }
+        }
+        .subtitle {
+            text-align: center;
+            color: #ff9a9e;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .cake-stage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            min-height: 300px;
+        }
+        /* Override cake.less colors for dark theme */
+        .cake { filter: drop-shadow(0 0 20px rgba(255,100,150,0.6)); }
+
+        .action-area { text-align: center; margin: 30px 0; }
+        .action-btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 35px;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 20px;
+            font-family: 'Signika', sans-serif;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .action-btn:hover { transform: scale(1.08); box-shadow: 0 8px 30px rgba(0,0,0,0.5); }
+        #cutBtn { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        #cutBtn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .message-box {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            margin: 20px auto;
+            max-width: 500px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            border: 2px solid rgba(255,215,0,0.4);
+        }
+        .message-box h2 { color: #ffd700; font-size: 32px; }
+        .message-box p { color: #fff; font-size: 18px; line-height: 1.8; }
+
+        .nav-btns { text-align: center; padding: 20px 0 40px; }
+        .nav-btns a {
+            display: inline-block;
+            margin: 8px;
+            padding: 12px 25px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .nav-btns a:hover { opacity: 0.85; color: #fff; text-decoration: none; }
+
+        .star { position: fixed; pointer-events: none; font-size: 24px; z-index: 9999; }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">🎂 Cut the Cake, Rimsha! 🎂</h1>
+    <p class="subtitle">Make a wish before you blow the candles! 🕯️✨</p>
+
+    <div class="cake-stage">
+        <div class="cake" id="mainCake">
+            <div class="velas">
+                <div class="fuego" id="f1"></div>
+                <div class="fuego" id="f2"></div>
+                <div class="fuego" id="f3"></div>
+                <div class="fuego" id="f4"></div>
+                <div class="fuego" id="f5"></div>
+            </div>
+            <div class="cobertura"></div>
+            <div class="bizcocho"></div>
+        </div>
+    </div>
+
+    <div class="action-area">
+        <button class="action-btn" id="blowBtn">💨 Blow Candles</button>
+        <button class="action-btn" id="cutBtn" disabled>🔪 Cut the Cake!</button>
+    </div>
+
+    <div class="message-box" id="msgBox">
+        <h2>🎉 Happy Birthday Rimsha! 🎉</h2>
+        <p>May all your wishes come true!<br>
+        You are loved more than you know. 💖<br>
+        Have the most amazing year ahead! 🌟</p>
+        <p style="font-size:40px; margin-top:15px;">🎂🎈🎊💝🌸</p>
+    </div>
+
+    <div class="nav-btns">
+        <a href="index.html" style="background:#e74c3c;">🏠 Home</a>
+        <a href="photos.html" style="background:#9b59b6;">📸 Photos</a>
+        <a href="wishes.html" style="background:#27ae60;">💌 Wishes</a>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        $('#blowBtn').click(function() {
+            $('.fuego').fadeOut(1500);
+            $(this).prop('disabled', true).text('✅ Candles Blown!');
+            setTimeout(function() { $('#cutBtn').prop('disabled', false); }, 1600);
+        });
+
+        $('#cutBtn').click(function() {
+            $(this).prop('disabled', true).text('🎉 Cake Cut!');
+            $('#mainCake').animate({opacity: 0, marginTop: '50px'}, 1000, function() {
+                $(this).hide();
+                $('#msgBox').fadeIn(1000);
+                launchStars();
+            });
+        });
+
+        function launchStars() {
+            var emojis = ['⭐','🌟','💖','🎉','🎊','🌸','✨','🎈'];
+            for(var i = 0; i < 30; i++) {
+                (function(delay) {
+                    setTimeout(function() {
+                        var el = $('<div class="star">').text(emojis[Math.floor(Math.random()*emojis.length)]);
+                        el.css({ left: Math.random()*100+'vw', top: '-30px' });
+                        $('body').append(el);
+                        el.animate({ top: '110vh', left: (parseFloat(el.css('left')) + Math.random()*200-100)+'px' },
+                            2000 + Math.random()*2000, function(){ $(this).remove(); });
+                    }, delay);
+                })(i * 100);
+            }
+        }
+    </script>
+</body>
+</html>

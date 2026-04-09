@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Rimsha's Photos 📸</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Signika' rel='stylesheet'>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: linear-gradient(135deg, #1a0a2e, #4a1060, #1a0a2e);
+            min-height: 100vh;
+            font-family: 'Signika', sans-serif;
+        }
+        .page-title {
+            text-align: center;
+            padding: 35px 0 5px;
+            color: #ffd700;
+            font-size: 40px;
+            text-shadow: 0 0 20px rgba(255,215,0,0.7);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        .subtitle {
+            text-align: center;
+            color: #ff9a9e;
+            font-size: 18px;
+            padding: 8px 0 30px;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ffd700; }
+            to   { text-shadow: 0 0 30px #ffd700, 0 0 60px #ff6b9d; }
+        }
+
+        /* Grid */
+        .photo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            padding: 10px 20px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .photo-frame {
+            background: #fff;
+            border-radius: 16px;
+            padding: 10px 10px 38px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            width: 280px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .photo-frame:nth-child(odd)  { transform: rotate(-2deg); }
+        .photo-frame:nth-child(even) { transform: rotate(2deg); }
+        .photo-frame:hover { transform: rotate(0deg) scale(1.06); box-shadow: 0 12px 40px rgba(255,100,150,0.5); }
+        .photo-frame img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+        }
+        .caption {
+            text-align: center;
+            margin-top: 8px;
+            color: #c0392b;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 80vh;
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(255,215,0,0.4);
+            animation: popIn 0.3s ease;
+        }
+        @keyframes popIn { from { transform: scale(0.7); opacity:0; } to { transform: scale(1); opacity:1; } }
+        .lightbox-caption {
+            color: #ffd700;
+            font-size: 20px;
+            margin-top: 15px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px; right: 30px;
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .lightbox-close:hover { color: #ffd700; }
+
+        /* Nav */
+        .nav-btns { text-align: center; padding: 10px 0 40px; }
+        .nav-btns a {
+            display: inline-block;
+            margin: 8px;
+            padding: 12px 28px;
+            border-radius: 30px;
+            color: #fff;
+            font-size: 16px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.2s;
+        }
+        .nav-btns a:hover { transform: scale(1.07); color: #fff; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <h1 class="page-title">📸 Rimsha's Gallery 📸</h1>
+    <p class="subtitle">✨ Click any photo to view it bigger ✨</p>
+
+    <div class="photo-grid">
+
+        <div class="photo-frame" onclick="openLightbox('Rimsha Arshad .jpeg', '🌸 Rimsha Arshad')">
+            <img src="Rimsha Arshad .jpeg" alt="Rimsha Arshad">
+            <div class="caption">🌸 Rimsha Arshad</div>
+        </div>
+
+        <div class="photo-frame" onclick="openLightbox('WhatsApp Image 2026-04-09 at 5.44.37 AM.jpeg', '💖 Beautiful Rimsha')">
+            <img src="WhatsApp Image 2026-04-09 at 5.44.37 AM.jpeg" alt="Rimsha">
+            <div class="caption">💖 Beautiful Rimsha</div>
+        </div>
+
+        <div class="photo-frame" onclick="openLightbox('WhatsApp Image 2026-04-09 at 5.44.38 AM.jpeg', '⭐ Shining Star')">
+            <img src="WhatsApp Image 2026-04-09 at 5.44.38 AM.jpeg" alt="Rimsha">
+            <div class="caption">⭐ Shining Star</div>
+        </div>
+
+        <div class="photo-frame" onclick="openLightbox('WhatsApp Image 2026-04-09 at 5.44.38 AM (1).jpeg', '🌟 Sweet Memories')">
+            <img src="WhatsApp Image 2026-04-09 at 5.44.38 AM (1).jpeg" alt="Rimsha">
+            <div class="caption">🌟 Sweet Memories</div>
+        </div>
+
+        <div class="photo-frame" onclick="openLightbox('WhatsApp Image 2026-04-09 at 5.44.38 AM (2).jpeg', '🎀 Our Princess')">
+            <img src="WhatsApp Image 2026-04-09 at 5.44.38 AM (2).jpeg" alt="Rimsha">
+            <div class="caption">🎀 Our Princess</div>
+        </div>
+
+        <div class="photo-frame" onclick="openLightbox('bd1.jpg', '🎂 Birthday Girl')">
+            <img src="bd1.jpg" alt="Birthday">
+            <div class="caption">🎂 Birthday Girl</div>
+        </div>
+
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+        <img id="lightbox-img" src="" alt="">
+        <div class="lightbox-caption" id="lightbox-cap"></div>
+    </div>
+
+    <div class="nav-btns">
+        <a href="index.html"  style="background:#e74c3c;">🏠 Home</a>
+        <a href="wishes.html" style="background:#9b59b6;">💌 Wishes</a>
+        <a href="cake.html"   style="background:#e67e22;">🎂 Cut Cake</a>
+    </div>
+
+    <script>
+        function openLightbox(src, cap) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox-cap').textContent = cap;
+            document.getElementById('lightbox').classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeLightbox(); });
+    </script>
+</body>
+</html>
